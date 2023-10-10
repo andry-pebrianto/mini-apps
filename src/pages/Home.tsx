@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <Fragment>
       <div className="container mt-4">
-        <h1 className="text-center">Home</h1>
+        <h1 className="text-center">My Mini Apps Collections</h1>
+        <br />
+        <br />
         <p>
           1. <Link to="/mobile-legend">Mobile Legend</Link>
         </p>
