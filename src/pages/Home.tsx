@@ -15,6 +15,9 @@ export default function Home() {
         <p>
           3. <Link to="/meme-generator">Meme Generator</Link>
         </p>
+        <p>
+          4. <Link to="/caesar-cipher">Caesar Cipher</Link>
+        </p>
       </div>
     </Fragment>
   );

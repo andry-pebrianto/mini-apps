@@ -66,6 +66,7 @@ export default function MobileLegend() {
           </div>
           <h1 className="text-center">Mobile Legend</h1>
         </div>
+        
         <div className="mt-4">
           {isLoading ? (
             <div className="d-flex justify-content-center">

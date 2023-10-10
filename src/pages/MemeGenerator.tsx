@@ -70,6 +70,7 @@ export default function MemeGenerator() {
           </div>
           <h1 className="text-center">Meme Generator</h1>
         </div>
+        
         <div className="mt-4">
           {isLoading ? (
             <div className="d-flex justify-content-center">
