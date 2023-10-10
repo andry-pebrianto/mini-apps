@@ -9,6 +9,9 @@ export default function Home() {
         <p>
           1. <Link to="/mobile-legend">Mobile Legend</Link>
         </p>
+        <p>
+          2. <Link to="/count-duration">Count Duration</Link>
+        </p>
       </div>
     </Fragment>
   );

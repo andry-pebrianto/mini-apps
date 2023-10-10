@@ -1,82 +1,137 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import moment from "moment";
+import Countdown, { CountdownRenderProps } from "react-countdown";
+import { Link } from "react-router-dom";
+
+type CountStatusType = {
+  message: string | null;
+  isError: boolean;
+};
 
 export default function CountDuration() {
+  const [dateSelected, setDateSelected] = useState<
+    string | number | readonly string[] | undefined
+  >(undefined);
   const [timeStamp, setTimeStamp] = useState<number>(0);
   const [counting, setCounting] = useState<boolean>(false);
-  const [dateStringStatus, setDateStringStatus] = useState<string>("");
-
-  useEffect(() => {
-    if (timeStamp > 0) {
-      timeStamp > 0 && setInterval(() => setTimeStamp((value) => value - 1), 1000);
-      console.log(dateStringStatus);
-    } else {
-      setCounting(false)
-    }
-
-    console.log("AA");
-  }, [counting]);
-
-  useEffect(() => {
-    console.log(timeStamp);
-
-    const duration = moment.duration(timeStamp, "seconds");
-
-    const days = duration.days();
-    const hours = duration.hours();
-    const minutes = duration.minutes();
-    const seconds = duration.seconds();
-
-    const formattedTime = `${days} hari, ${hours} jam, ${minutes} menit, ${seconds} detik`;
-
-    setDateStringStatus(formattedTime);
-  }, [timeStamp])
+  const [countStatus, setCountStatus] = useState<CountStatusType>({
+    message: null,
+    isError: false,
+  });
 
   const inputDateHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDateSelected(event.target.value);
     setTimeStamp(moment(event.target.value).unix() - moment().unix());
   };
 
   const startCount = () => {
-    setCounting(true);
+    if (timeStamp > 0) {
+      setCounting(true);
 
-    const duration = moment.duration(timeStamp, "seconds");
+      setCountStatus({
+        message: null,
+        isError: false,
+      });
+    } else {
+      if (timeStamp < 0) {
+        setCountStatus({
+          message: "Memilih tanggal di masa lalu tidak diperbolehkan.",
+          isError: true,
+        });
+      } else {
+        setCountStatus({
+          message: "Silahkan pilih tanggal dan waktu yang anda inginkan.",
+          isError: true,
+        });
+      }
+    }
+  };
 
-    const days = duration.days();
-    const hours = duration.hours();
-    const minutes = duration.minutes();
-    const seconds = duration.seconds();
+  const resetCount = () => {
+    setCounting(false);
+    setDateSelected(undefined);
+    setTimeStamp(0);
 
+    setCountStatus({
+      message: null,
+      isError: false,
+    });
+  };
+
+  const customCountdownRenderer = (countdown: CountdownRenderProps) => {
+    const { days, hours, minutes, seconds } = countdown.formatted;
     const formattedTime = `${days} hari, ${hours} jam, ${minutes} menit, ${seconds} detik`;
 
-    setDateStringStatus(formattedTime);
+    return formattedTime;
   };
 
   return (
     <Fragment>
       <div className="container mt-4">
-        <h1 className="text-center">Count Duration</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <div>
+            <Link className="btn btn-sm btn-primary me-2 mb-1" to={"/"}>
+              ← Back
+            </Link>
+          </div>
+          <h1 className="text-center">Count Duration</h1>
+        </div>
 
         <div
-          className="mb-3 border p-4 bg-white mx-auto"
-          style={{ maxWidth: "500px" }}
+          className="border p-4 bg-white mx-auto mt-4"
+          style={{ maxWidth: "600px" }}
         >
+          {countStatus.message && (
+            <>
+              <div
+                className={`alert ${
+                  countStatus.isError ? "alert-danger" : "alert-success"
+                }`}
+              >
+                {countStatus.message}
+              </div>
+            </>
+          )}
           <label className="form-label">Select Date and Time</label>
           <div>
             <input
               type="datetime-local"
               className="form-control"
               onChange={inputDateHandler}
+              value={dateSelected}
             />
           </div>
           {counting ? (
-            <p>{dateStringStatus}</p>
+            <>
+              <button
+                className="btn btn-danger mt-3"
+                style={{ width: "100px" }}
+                onClick={resetCount}
+              >
+                Reset
+              </button>
+              <div className="mt-2">
+                <Countdown
+                  date={Date.now() + timeStamp * 1000}
+                  renderer={customCountdownRenderer}
+                  onComplete={() => {
+                    setCounting(false);
+
+                    setCountStatus({
+                      message: "Hitung mundur selesai.",
+                      isError: false,
+                    });
+                  }}
+                />
+              </div>
+            </>
           ) : (
             <button
-              className="btn btn-primary mt-2"
+              className="btn btn-primary mt-3"
               style={{ width: "100px" }}
               onClick={startCount}
             >
-              Start!
+              Start
             </button>
           )}
         </div>
