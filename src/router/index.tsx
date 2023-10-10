@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import CountDuration from "../pages/CountDuration";
 import MobileLegend from "../pages/MobileLegend";
+import MemeGenerator from "../pages/MemeGenerator";
 
 export default function router() {
   return (
@@ -15,6 +16,9 @@ export default function router() {
         </Route>
         <Route path="/mobile-legend">
           <Route index element={<MobileLegend />} />
+        </Route>
+        <Route path="/meme-generator">
+          <Route index element={<MemeGenerator />} />
         </Route>
       </Routes>
     </BrowserRouter>

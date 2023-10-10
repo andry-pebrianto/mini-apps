@@ -12,6 +12,9 @@ export default function Home() {
         <p>
           2. <Link to="/count-duration">Count Duration</Link>
         </p>
+        <p>
+          3. <Link to="/meme-generator">Meme Generator</Link>
+        </p>
       </div>
     </Fragment>
   );
