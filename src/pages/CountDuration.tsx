@@ -11,7 +11,7 @@ type CountStatusType = {
 export default function CountDuration() {
   const [dateSelected, setDateSelected] = useState<
     string | number | readonly string[] | undefined
-  >(undefined);
+  >("");
   const [timeStamp, setTimeStamp] = useState<number>(0);
   const [counting, setCounting] = useState<boolean>(false);
   const [countStatus, setCountStatus] = useState<CountStatusType>({
@@ -49,7 +49,7 @@ export default function CountDuration() {
 
   const resetCount = () => {
     setCounting(false);
-    setDateSelected(undefined);
+    setDateSelected("");
     setTimeStamp(0);
 
     setCountStatus({
@@ -116,6 +116,8 @@ export default function CountDuration() {
                   renderer={customCountdownRenderer}
                   onComplete={() => {
                     setCounting(false);
+                    setDateSelected("");
+                    setTimeStamp(0);
 
                     setCountStatus({
                       message: "Hitung mundur selesai.",
