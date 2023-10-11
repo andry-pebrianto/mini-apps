@@ -36,7 +36,13 @@ export default function CaesarCipher() {
   }
 
   function startDecrypt() {
-    setDecryptResult(caesarCipher(decryptText, 26 - decryptKey));
+    let decryptKeyPerformed = decryptKey;
+
+    while (decryptKeyPerformed > 26) {
+      decryptKeyPerformed = decryptKeyPerformed - 26;
+    }
+
+    setDecryptResult(caesarCipher(decryptText, 26 - decryptKeyPerformed));
   }
 
   return (

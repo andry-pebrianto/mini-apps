@@ -25,20 +25,28 @@ export default function MemeGenerator() {
     fetchMeme();
 
     window.addEventListener("resize", () => {
-      const screenWidth =
-        window.innerWidth ||
-        document.documentElement.clientWidth ||
-        document.body.clientWidth;
-
-      if (screenWidth < 600) {
-        setMemeWidth(() => 300);
-      } else if (screenWidth < 800) {
-        setMemeWidth(() => 400);
-      } else {
-        setMemeWidth(() => 600);
-      }
+      fixMemeSize();
     });
   }, []);
+
+  useEffect(() => {
+    fixMemeSize();
+  }, [dataMeme]);
+
+  const fixMemeSize = (): void => {
+    const screenWidth =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+
+    if (screenWidth < 600) {
+      setMemeWidth(() => 300);
+    } else if (screenWidth < 800) {
+      setMemeWidth(() => 400);
+    } else {
+      setMemeWidth(() => 600);
+    }
+  };
 
   async function fetchMeme() {
     try {
@@ -70,7 +78,7 @@ export default function MemeGenerator() {
           </div>
           <h1 className="text-center">Meme Generator</h1>
         </div>
-        
+
         <div className="mt-4">
           {isLoading ? (
             <div className="d-flex justify-content-center">

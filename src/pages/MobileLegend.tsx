@@ -80,7 +80,7 @@ export default function MobileLegend() {
                 <p>{errorMessage}</p>
               ) : (
                 <>
-                  <div style={{ width: "400px" }}>
+                  <div style={{ maxWidth: "400px" }}>
                     <input
                       onChange={filterHero}
                       className="form-control me-2"
