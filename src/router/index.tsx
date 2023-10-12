@@ -6,6 +6,7 @@ import MemeGenerator from "../pages/MemeGenerator";
 import CaesarCipher from "../pages/CaesarCipher";
 import WordScramble from "../pages/WordScramble";
 import SalaryCalculator from "../pages/SalaryCalculator";
+import MatchingCard from "../pages/MatchingCard";
 
 export default function router() {
   return (
@@ -31,6 +32,9 @@ export default function router() {
         </Route>
         <Route path="/salary-calculator">
           <Route index element={<SalaryCalculator />} />
+        </Route>
+        <Route path="/matching-card">
+          <Route index element={<MatchingCard />} />
         </Route>
       </Routes>
     </BrowserRouter>

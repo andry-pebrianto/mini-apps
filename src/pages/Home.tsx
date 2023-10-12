@@ -26,6 +26,9 @@ export default function Home() {
         <p>
           6. <Link to="/salary-calculator">Salary Calculator</Link>
         </p>
+        <p>
+          7. <Link to="/matching-card">Matching Card</Link>
+        </p>
       </div>
     </Fragment>
   );
