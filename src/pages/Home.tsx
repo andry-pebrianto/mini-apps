@@ -20,6 +20,9 @@ export default function Home() {
         <p>
           4. <Link to="/caesar-cipher">Caesar Cipher</Link>
         </p>
+        <p>
+          5. <Link to="/word-scramble">Word Scramble</Link>
+        </p>
       </div>
     </Fragment>
   );

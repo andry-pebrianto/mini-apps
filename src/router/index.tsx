@@ -4,6 +4,7 @@ import CountDuration from "../pages/CountDuration";
 import MobileLegend from "../pages/MobileLegend";
 import MemeGenerator from "../pages/MemeGenerator";
 import CaesarCipher from "../pages/CaesarCipher";
+import WordScramble from "../pages/WordScramble";
 
 export default function router() {
   return (
@@ -23,6 +24,9 @@ export default function router() {
         </Route>
         <Route path="/caesar-cipher">
           <Route index element={<CaesarCipher />} />
+        </Route>
+        <Route path="/word-scramble">
+          <Route index element={<WordScramble />} />
         </Route>
       </Routes>
     </BrowserRouter>
