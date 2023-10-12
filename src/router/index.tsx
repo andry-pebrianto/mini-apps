@@ -5,6 +5,7 @@ import MobileLegend from "../pages/MobileLegend";
 import MemeGenerator from "../pages/MemeGenerator";
 import CaesarCipher from "../pages/CaesarCipher";
 import WordScramble from "../pages/WordScramble";
+import SalaryCalculator from "../pages/SalaryCalculator";
 
 export default function router() {
   return (
@@ -27,6 +28,9 @@ export default function router() {
         </Route>
         <Route path="/word-scramble">
           <Route index element={<WordScramble />} />
+        </Route>
+        <Route path="/salary-calculator">
+          <Route index element={<SalaryCalculator />} />
         </Route>
       </Routes>
     </BrowserRouter>

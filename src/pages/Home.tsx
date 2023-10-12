@@ -23,6 +23,9 @@ export default function Home() {
         <p>
           5. <Link to="/word-scramble">Word Scramble</Link>
         </p>
+        <p>
+          6. <Link to="/salary-calculator">Salary Calculator</Link>
+        </p>
       </div>
     </Fragment>
   );
